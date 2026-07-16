@@ -112,7 +112,8 @@ def rebuild_pak(records, extract_dir, output_path):
     # Pre-read all modified files
     new_file_data = []
     for rec in records:
-        src = extract_dir / rec.name
+        norm_name = rec.name.replace('\\', '/')
+        src = extract_dir / norm_name
         if src.exists():
             data = src.read_bytes()
             if len(data) != rec.original_size:

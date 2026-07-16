@@ -122,7 +122,8 @@ class PakFile:
                 raw_size = 2 + rec.header_val + rec.size
                 f.seek(rec.start_pos)
                 data = f.read(raw_size)
-                filepath = out / rec.name
+                norm_name = rec.name.replace('\\', '/')
+                filepath = out / norm_name
                 filepath.parent.mkdir(parents=True, exist_ok=True)
                 with open(filepath, 'wb') as out_f:
                     out_f.write(data)
@@ -143,7 +144,8 @@ class PakFile:
             for rec in self.records:
                 f.seek(rec.data_start)
                 data = f.read(rec.size)
-                filepath = out / rec.name
+                norm_name = rec.name.replace('\\', '/')
+                filepath = out / norm_name
                 filepath.parent.mkdir(parents=True, exist_ok=True)
                 with open(filepath, 'wb') as out_f:
                     out_f.write(data)
