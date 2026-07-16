@@ -122,47 +122,6 @@ python levelpreview.py fish.dat preview.png --debug-labels  # Mostrar IDs das en
 **Opções:**
 - `--no-textures` — desativa texturas; usa cores sólidas (equivalente ao preview do PeggleEdit)
 - `--debug-labels` — exibe o índice numérico de cada entrada sobre o preview (útil para depuração)
-```
-
-**Pipeline de renderização:**
-
-1. Canvas 800x600 preto
-2. Background (do arquivo de imagem pareado com o .dat no diretório extraído)
-3. Entidades em duas passadas: sombras → objetos
-4. Overlay da interface (interface.png do PeggleEdit)
-
-**Tipos de entrada renderizados:**
-
-| Tipo | Renderização |
-|------|-------------|
-| Circle (peg) | Elipse com cor externa/interna do PegInfo, ou textura do sprite sheet peg.png |
-| Brick | Retângulo ou setor circular com cores do PegInfo |
-| Polygon | Wireframe branco ou imagem do .pak |
-| Rod | Linha branca entre dois pontos |
-| Teleport | Retângulos aninhados (preto/branco/preto) ou imagem |
-| Emitter | Retângulo azul tracejado |
-| Generators | Círculo laranja tracejado com pontos |
-
-**Assets (embutidos na lib em `assets/`, copiados do PeggleEdit):**
-- `peg.png` (20x160) — sprite sheet de texturas de peg
-- `brick.png` (32x160) — sprite sheet de texturas de brick
-- `interface.png` (800x600) — overlay HUD
-- `circle_outer.png` / `circle_inner.png` — fallback para circles não-peg
-
-**Background e imagens:** são buscados automaticamente no mesmo diretório do .dat.
-Basta colocar o `.dat` e a imagem de background (`.jpg`/`.png` com o mesmo nome)
-juntos na mesma pasta — sem necessidade do dump completo do .pak.
-
-**Cores dos pegs (PegInfo):**
-
-| Situação | Externa (Outer) | Interna (Inner) |
-|----------|----------------|-----------------|
-| Azul normal | `(83, 124, 217)` | `(13, 50, 167)` |
-| Azul desmoronável | `(83, 124, 217)` | `(214, 254, 255)` |
-| Laranja normal | `(234, 140, 22)` | `(131, 35, 6)` |
-| Laranja desmoronável | `(234, 140, 22)` | `(255, 250, 202)` |
-
----
 
 ## Guia de Modding Passo a Passo
 
@@ -175,7 +134,6 @@ Você precisa do `.pak` original do Peggle PS3. Os principais são:
 
 ```bash
 python extract.py peggle.pak -x ./extracted
-```
 
 Isso cria a pasta `extracted/` com toda a árvore de arquivos do jogo.
 
